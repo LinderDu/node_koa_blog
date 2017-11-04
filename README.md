@@ -1,1 +1,1 @@
-# node_koa_blog
+#init project node_koa_blog
