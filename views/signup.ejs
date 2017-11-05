@@ -1,0 +1,54 @@
+<% include header %>
+<link rel="stylesheet" href="/sign.css">
+<div class="container">
+    <div class="center">
+        <form class="form create" method="post">
+            <div class="input-container">
+                <label class="input-title">用户名：</label>
+                <input placeholder="用户名" type="text" name="name">
+            </div>
+            <div class="input-container">
+                <label class="input-title">密码：</label>
+                <input class="password" type="password" name="password">
+            </div>
+            <div class="input-container">
+                <label class="input-title">重复密码：</label>
+                <input class="repeatpass" type="password" name="repeatpass">
+            </div>
+            <div id="sign" class="btn">注册</div>
+        </form>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#sign").click(() => {
+            console.log($('.form').serialize());
+            $.ajax({
+                url: '/signup',
+                data: $('.form').serialize(),
+                type: 'POST',
+                success: (result) => {
+                    if (result.code == 1) {
+
+                    }
+                    switch (result.code) {
+                        case 1:
+                            alert('用户名已存在');
+                            $("input[type='name']").val('');
+                            break;
+                        case 2:
+                            alert('请从新输入密码');
+                            $("input[type='password']").val('');
+                            $("input[type='repeatpass']").val('');
+                            break;
+                        case 3:
+                            alert('用户注册成功');
+                        default:
+                            alert('服务器异常');
+                    }
+                }
+            })
+        });
+    });
+</script>
+<% include footer %>

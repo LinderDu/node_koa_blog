@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="/index.css">
+<script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<body>
+<header>
+    <div class="user">
+        user:
+        <% if(session.user){ %>
+        <%= session.user %>
+        <% } %>
+        <% if(!session.user) { %>
+        未登录
+        <% } %>
+    </div>
+    <div class="message">
+        <div class="error"></div>
+        <div class="success"></div>
+    </div>
+    <div class="user_right">
+        <ul>
+            <li><a href="/posts">全部文章</a></li>
+            <% if(session.user){ %>
+            <li><a href="/create">发布文章</a></li>
+            <li><a href="/signout">退出</a></li>
+            <% } %>
+            <% if(!session.user){ %>
+            <li><a href="/signup">注册</a></li>
+            <li><a href="/signin">登录</a></li>
+            <% } %>
+        </ul>
+    </div>
+</header>
